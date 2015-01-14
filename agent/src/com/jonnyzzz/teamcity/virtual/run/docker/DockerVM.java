@@ -74,17 +74,20 @@ public class DockerVM extends BaseVM implements VMRunner {
     final File workDir = ctx.getWorkingDirectory();
     final BuildProgressLogger logger = context.getBuild().getBuildLogger();
 
+    final String name = ctx.getContainerName();
+
     myScriptFile.generateScriptFile(ctx, builder, new ScriptFile.Builder() {
       @Override
       public void buildWithScriptFile(@NotNull final File script) throws RunBuildException {
-        final String name = "teamcity_" + StringUtil.generateUniqueHash();
         final List<String> additionalCommands = additionalCommands(context.getRunnerParameters().get(VMConstants.PARAMETER_DOCKER_CUSTOM_COMMANDLINE));
 
-        builder.addTryProcess(
-                block("Pulling the image", cmd.commandline(
-                        workDir, Arrays.asList("docker", "pull", ctx.getImageName())
-                ))
-        );
+        if (ctx.getPullImage()) {
+          builder.addTryProcess(
+                  block("Pulling the image", cmd.commandline(
+                          workDir, Arrays.asList("docker", "pull", ctx.getImageName())
+                  ))
+          );
+        }
 
         builder.addTryProcess(
                 block("Executing the command", cmd.commandline(

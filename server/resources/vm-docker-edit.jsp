@@ -33,6 +33,14 @@
   </td>
 </tr>
 
+<tr>
+  <th>Pull image from registry?</th>
+  <td>
+    <props:checkboxProperty name="${ctx.dockerPullImage}" className="longField"/>
+    <span class="error" id="error:${ctx.dockerPullImage}"></span>
+  </td>
+</tr>
+
 <tr class="advancedSetting">
   <th><label for="${ctx.dockerCustomCommandLine}">Additional Docker Parameters:</label></th>
   <td>

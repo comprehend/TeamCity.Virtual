@@ -45,6 +45,11 @@ public class FormBean {
   }
 
   @NotNull
+  public String getDockerPullImage() {
+    return PARAMETER_DOCKER_PULL_IMAGE;
+  }
+
+  @NotNull
   public String getDockerCustomCommandLine() {
     return PARAMETER_DOCKER_CUSTOM_COMMANDLINE;
   }

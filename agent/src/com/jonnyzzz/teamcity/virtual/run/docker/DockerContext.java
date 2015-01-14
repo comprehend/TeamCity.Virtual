@@ -21,6 +21,7 @@ import com.jonnyzzz.teamcity.virtual.run.VMRunnerContext;
 import jetbrains.buildServer.RunBuildException;
 import jetbrains.buildServer.agent.BuildRunnerContext;
 import jetbrains.buildServer.util.StringUtil;
+import jetbrains.buildServer.vcs.VcsRoot;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -36,5 +37,18 @@ public class DockerContext extends VMRunnerContext {
     final String image = myContext.getRunnerParameters().get(VMConstants.PARAMETER_DOCKER_IMAGE_NAME);
     if (StringUtil.isEmptyOrSpaces(image)) throw new RunBuildException("Docker image is not specified");
     return image;
+  }
+
+  @NotNull
+  public Boolean getPullImage() {
+    final Boolean pull = Boolean.parseBoolean(myContext.getRunnerParameters().get(VMConstants.PARAMETER_DOCKER_PULL_IMAGE));
+    return pull;
+  }
+
+
+  @NotNull
+  public String getContainerName() {
+    final String unique = myContext.getBuild().getBuildNumber();// + "_"
+    return "teamcity_" + unique;
   }
 }
