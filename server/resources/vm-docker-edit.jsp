@@ -41,6 +41,14 @@
   </td>
 </tr>
 
+<tr>
+  <th>Destroy container after the build?</th>
+  <td>
+    <props:checkboxProperty name="${ctx.dockerDestroyContainer}" className="longField"/>
+    <span class="error" id="error:${ctx.dockerDestroyContainer}"></span>
+  </td>
+</tr>
+
 <tr class="advancedSetting">
   <th><label for="${ctx.dockerCustomCommandLine}">Additional Docker Parameters:</label></th>
   <td>

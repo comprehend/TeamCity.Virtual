@@ -50,6 +50,11 @@ public class FormBean {
   }
 
   @NotNull
+  public String getDockerDestroyContainer() {
+    return PARAMETER_DOCKER_DESTROY_CONTAINER;
+  }
+
+  @NotNull
   public String getDockerCustomCommandLine() {
     return PARAMETER_DOCKER_CUSTOM_COMMANDLINE;
   }

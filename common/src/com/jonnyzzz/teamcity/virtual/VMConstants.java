@@ -22,6 +22,8 @@ package com.jonnyzzz.teamcity.virtual;
 public class VMConstants {
   public static final String RUN_TYPE = "jonnyzzz.vm";
 
+  public static final String BASE_DIR = "/comprehend";
+
   public static final String VAGRANT_PROPERTY = "vagrant";
   public static final String DOCKER_PROPERTY = "docker";
 
@@ -32,10 +34,13 @@ public class VMConstants {
   public static final String PARAMETER_SCRIPT = "script";
   public static final String PARAMETER_DOCKER_IMAGE_NAME = "docker-image-name";
   public static final String PARAMETER_DOCKER_PULL_IMAGE = "docker-pull-image";
+  public static final String PARAMETER_DOCKER_DESTROY_CONTAINER = "docker-destroy-container";
   public static final String PARAMETER_DOCKER_CUSTOM_COMMANDLINE = "docker-commandline";
 
   public static final String PARAMETER_VAGRANT_FILE = "vagrant-file";
   public static final String PARAMETER_VAGRANT_CUSTOM_COMMANDLINE = "vagrant-commandline";
+
+  public static final String BUILD_VCS_NUMBER = "BUILD_VCS_NUMBER";
 
   public static final String VAGRANT_FILE = "Vagrantfile";
 }

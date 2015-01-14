@@ -21,8 +21,8 @@
       <include name="**/teamcity-plugin.xml"/>
 
       <replacefilter token="@Plugin_Version@" value="${build.number}"/>
-      <replacefilter token="@Plugin_Vendor@" value="Eugene Petrenko"/>
-      <replacefilter token="@Plugin_Vendor_Url@" value="http://blog.jonnyzzz.name"/>
+      <replacefilter token="@Plugin_Vendor@" value="Comprehend"/>
+      <replacefilter token="@Plugin_Vendor_Url@" value="https://github.com/comprehend/TeamCity.Virtual"/>
     </replace>
   </target>
 

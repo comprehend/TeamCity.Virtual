@@ -41,14 +41,18 @@ public class DockerContext extends VMRunnerContext {
 
   @NotNull
   public Boolean getPullImage() {
-    final Boolean pull = Boolean.parseBoolean(myContext.getRunnerParameters().get(VMConstants.PARAMETER_DOCKER_PULL_IMAGE));
-    return pull;
+    return Boolean.parseBoolean(myContext.getRunnerParameters().get(VMConstants.PARAMETER_DOCKER_PULL_IMAGE));
+  }
+
+  @NotNull
+  public Boolean getDestroyContainer() {
+    return Boolean.parseBoolean(myContext.getRunnerParameters().get(VMConstants.PARAMETER_DOCKER_DESTROY_CONTAINER));
   }
 
 
   @NotNull
   public String getContainerName() {
-    final String unique = myContext.getBuild().getBuildNumber();// + "_"
+    final String unique = myContext.getBuild().getBuildNumber() + "_" + myContext.getBuildParameters().getEnvironmentVariables().get(VMConstants.BUILD_VCS_NUMBER);
     return "teamcity_" + unique;
   }
 }

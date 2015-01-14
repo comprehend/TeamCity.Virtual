@@ -87,6 +87,8 @@ public class DockerVM extends BaseVM implements VMRunner {
                           workDir, Arrays.asList("docker", "pull", ctx.getImageName())
                   ))
           );
+        } else {
+          logger.message("Skipping pulling the image, using local copy.");
         }
 
         builder.addTryProcess(
@@ -95,7 +97,12 @@ public class DockerVM extends BaseVM implements VMRunner {
                         dockerRun(name, additionalCommands, scriptRun(script))
                 ))
         );
-        builder.addFinishProcess(block("Terminating images (if needed)", cmd.commandline(workDir, Arrays.asList("docker", "kill", name, "2>&1", "||", "true"))));
+
+        if (ctx.getDestroyContainer()) {
+          builder.addFinishProcess(block("Terminating images (if needed)", cmd.commandline(workDir, Arrays.asList("docker", "kill", name, "2>&1", "||", "true"))));
+        } else {
+          logger.message("Not terminating the image, container is called: "+name);
+        }
 
         builder.addFinishProcess(block("Fixing chown", new DelegatingBuildProcess(new DelegatingBuildProcess.ActionAdapter() {
           @NotNull
@@ -146,8 +153,8 @@ public class DockerVM extends BaseVM implements VMRunner {
                 "--rm=true",
                 "--name=" + name,
                 "-v",
-                baseDir.getPath() + ":/jonnyzzz:rw",
-                "--workdir=/jonnyzzz/" + RelativePaths.resolveRelativePath(baseDir, workDir),
+                baseDir.getPath() + ":" + VMConstants.BASE_DIR + ":rw",
+                "--workdir=" + VMConstants.BASE_DIR + "/" + RelativePaths.resolveRelativePath(baseDir, workDir),
                 "--interactive=false",
                 "--tty=false"));
 
