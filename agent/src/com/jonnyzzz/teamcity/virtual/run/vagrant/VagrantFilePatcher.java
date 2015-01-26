@@ -82,7 +82,7 @@ public class VagrantFilePatcher {
         });
 
         final File mountRoot = context.getCheckoutDirectory();
-        final String basePath = VMConstants.BASE_DIR;
+        final String basePath = VMConstants.DOCKER_BASE_DIR;
 
         final String patch = generateVagrantfile(mountRoot, basePath);
         logger.activityStarted("generate", "Added to the end of the Vagrantfile", "vagrant");

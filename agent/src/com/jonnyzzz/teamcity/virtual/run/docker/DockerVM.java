@@ -153,8 +153,8 @@ public class DockerVM extends BaseVM implements VMRunner {
                 "--rm=true",
                 "--name=" + name,
                 "-v",
-                baseDir.getPath() + ":" + VMConstants.BASE_DIR + ":rw",
-                "--workdir=" + VMConstants.BASE_DIR + "/" + RelativePaths.resolveRelativePath(baseDir, workDir),
+                baseDir.getPath() + ":" + VMConstants.DOCKER_BASE_DIR + ":rw",
+                "--workdir=" + VMConstants.DOCKER_BASE_DIR + "/" + RelativePaths.resolveRelativePath(baseDir, workDir),
                 "--interactive=false",
                 "--tty=false"));
 

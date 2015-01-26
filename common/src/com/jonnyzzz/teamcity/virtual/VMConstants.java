@@ -22,7 +22,7 @@ package com.jonnyzzz.teamcity.virtual;
 public class VMConstants {
   public static final String RUN_TYPE = "jonnyzzz.vm";
 
-  public static final String BASE_DIR = "/comprehend";
+  public static final String DOCKER_BASE_DIR = "/comprehend";
 
   public static final String VAGRANT_PROPERTY = "vagrant";
   public static final String DOCKER_PROPERTY = "docker";
